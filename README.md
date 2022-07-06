@@ -1,4 +1,4 @@
-# MCDatapack (Command Line Tool)
+# MCDatapack
 
   MCDatapack is a C# .NET 6 command line tool to create and manage datapacks and Bedrock behavior packs.                                                                                         
 

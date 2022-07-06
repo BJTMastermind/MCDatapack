@@ -10,6 +10,7 @@
 - [ ] 'list-repo' Command - List all datapacks avalible to install.
 - [ ] 'install' Command - Install a avalible datapack from the repo.
 - [ ] 'config' Command - Change the default settings for the program.
+- [ ] VanillaTweaks datapack support using 'install' Command.
 
 ## How To Use
 

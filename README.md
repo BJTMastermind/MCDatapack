@@ -1,29 +1,21 @@
-<h1 align="center">Template Repository</h1>
+# MCDatapack (Command Line Tool)
 
-  A Template Repository That I Can Use to Make New Repositories I Make in The Future Easier.                                                                                         
+  MCDatapack is a C# .NET 6 command line tool to create and manage datapacks and Bedrock behavior packs.                                                                                         
 
 ## Plan To Add / To Do
 
-- [ ] Item 1
-- [ ] Item 2
-- [ ] Item 3
+- [X] 'new' Command - Creates a new datapack in a given world.
+- [X] 'delete' Command - Deletes a given datapack in a world.
+- [X] 'list' Command - List all datapacks in a given world.
+- [ ] 'list-repo' Command - List all datapacks avalible to install.
+- [ ] 'install' Command - Install a avalible datapack from the repo.
+- [ ] 'config' Command - Change the default settings for the program.
 
-## How To Use (UI)
-
-Coming Soon.
-
-## How To Use (Command Line)
-
-Coming Soon.
-
-## Minimum \<Insert Language Here> Version
-
-* Version of Language 
-
-## About This Project
-
-This is a template repository that I can use to make new repositories I make in the future easier.
-
-# Screen Shots
+## How To Use
 
 Coming Soon.
+
+## Minimum C# Version
+
+* C# 10
+* .NET 6.0

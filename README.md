@@ -12,9 +12,21 @@
 - [ ] 'config' Command - Change the default settings for the program.
 - [ ] VanillaTweaks datapack support using 'install' Command.
 
-## How To Use
+## How to Compile
 
 Coming Soon.
+
+## How To Use
+
+To create a new datapack project use the following command:<br>
+``mcdatapack new <Project Name> <Project Description> <World Name> [-e|--edition <bedrock/java>]``
+
+To delete a datapack project use the following command:<br>
+``mcdatapack delete <Project Name> <World Name> [-e|--edition <bedrock/java>]``<br>
+Then confirm the deletion
+
+To list all datapacks in a world use the following command:<br>
+``mcdatapack list <World Name> [-e|--edition <bedrock/java>]``
 
 ## Minimum C# Version
 

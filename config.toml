@@ -1,23 +1,5 @@
-# The Operating System you are running.
-# Vaild options: "Windows", "MacOs", and "Linux"
-OS = "Linux"
-
-# {} with a number in side resembles a part of the path that not
-# the same for everyone. like your computers username,
-# Minecraft world name, etc. DO NOT CHANGE THEM
-
 [Java-Edition]
-windows-worldfolder = "C:\\Users\\{0}\\AppData\\Roaming\\.minecraft\\saves\\{1}"
-mac-worldfolder = "/Users/{0}/Library/Application Support/minecraft/saves/{1}"
-linux-worldfolder = "/home/{0}/.minecraft/saves/{1}"
-
-windows-projectroot = "\\datapacks\\{0}"
-other-projectroot = "/datapacks/{0}"
+worldfolder = "/home/{0}/.minecraft/saves/{1}"
 
 [Bedrock-Edition]
-windows-worldfolder = "C:\\Users\\{0}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\{1}"
-mac-worldfolder = ""
-linux-worldfolder = "/home/{0}/.local/share/mcpelauncher/games/com.mojang/minecraftWorlds/{1}"
-
-windows-projectroot = "\\behavior_packs\\{0}"
-other-projectroot = "/behavior_packs/{0}"
+worldfolder = "/home/{0}/.local/share/mcpelauncher/games/com.mojang/minecraftWorlds/{1}"

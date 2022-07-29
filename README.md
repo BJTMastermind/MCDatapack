@@ -9,7 +9,7 @@
 - [X] 'list' Command - List all datapacks in a given world.
 - [ ] 'list-repo' Command - List all datapacks avalible to install.
 - [ ] 'install' Command - Install a avalible datapack from the repo.
-- [ ] 'config' Command - Change the default settings for the program.
+- [X] 'config' Command - Change the default settings for the program.
 - [ ] VanillaTweaks datapack support using 'install' Command.
 
 ## How to Compile
@@ -27,6 +27,12 @@ Then confirm the deletion
 
 To list all datapacks in a world use the following command:<br>
 ``mcdatapack list <World Name> [-e|--edition <bedrock/java>]``
+
+To get the current value of a config option use the following command<br>
+``mcdatapack config get <configOption>``
+
+To set the value of a config option use the following command<br>
+``mcdatapack config set <configOption> <configValue>``
 
 ## Minimum C# Version
 

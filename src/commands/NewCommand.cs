@@ -9,9 +9,25 @@ using mcdatapack.utils;
 public class NewCommand {
 
     public static void Execute(string projectName, string projectDescription, string worldName, Utils.Editions edition) {
+        switch(edition) {
+            case Utils.Editions.java:
+                if(Program.Settings!.JavaMCFolder == String.Empty) {
+                    Console.WriteLine("You must first set the Java Edition .minecraft folder path before you can use this program.");
+                    Console.WriteLine("Use: 'mcdatapack config set java-mcFolder <PathToMCFolder>' to set it.");
+                    return;
+                }
+                break;
+            case Utils.Editions.bedrock:
+                if(Program.Settings!.BedrockMCFolder == String.Empty) {
+                    Console.WriteLine("You must first set the Bedrock Edition com.mojang folder path before you can use this program.");
+                    Console.WriteLine("Use: 'mcdatapack config set bedrock-mcFolder <PathToMCFolder>' to set it.");
+                    return;
+                }
+                break;
+        }
         string separator = Path.DirectorySeparatorChar.ToString();
-        string worldFolder = Utils.GetMinecraftFolder(Program.Settings.OS, edition, worldName);
-        string projectFolder = worldFolder + Utils.GetProjectFolder(Program.Settings.OS, edition, projectName);
+        string worldFolder = Utils.GetMinecraftFolder(edition, worldName);
+        string projectFolder = worldFolder + Utils.GetProjectFolder(edition, projectName);
         string projectNamespace = projectName.ToLower().Replace(" ", "_");
 
         switch(edition) {

@@ -4,9 +4,15 @@ using mcdatapack.commands;
 using mcdatapack.utils;
 
 public class Program {
-    public static TomlSettings Settings = new TomlSettings();
+    public static TomlSettings? Settings;
 
     public static void Main(string[] args) {
+        if(!File.Exists("config.toml")) {
+            TomlSettings.CreateTomlConfig();
+        }
+
+        Settings = new TomlSettings();
+
         RootCommand rootCommand = new RootCommand("A package manager for Minecraft datapacks.");
 
         Option<Utils.Editions> edition = new Option<Utils.Editions>(name: "--edition", description: "The edition of minecraft version (Defaults to Java)");
@@ -55,8 +61,66 @@ public class Program {
 
         rootCommand.AddCommand(listCommand);
 
-        /*Command installCommand = new Command(name: "install", description: "Install a avalible datapack in the spcified world for a specified version. (Defaults to Java Edition)");
-        rootCommand.AddCommand(installCommand);*/
+        Command listrepoCommand = new Command(name: "list-repo", description: "List all avalible datapacks to install for a specified version. (Defaults to Java Edition)");
+        listrepoCommand.AddOption(edition);
+
+        listrepoCommand.SetHandler((editionValue) => {
+            ListRepoCommand.Execute(editionValue);
+        }, edition);
+
+        rootCommand.AddCommand(listrepoCommand);
+
+        Command installCommand = new Command(name: "install", description: "Install a avalible datapack in the spcified world for a specified version. (Defaults to Java Edition)");
+        Argument<string> packName = new Argument<string>(name: "Datapack", description: "The datapack name to install.");
+        Argument<string> installWorldFolder = new Argument<string>(name: "World Name", description: "The world to install the datapack too.");
+        installCommand.AddArgument(packName);
+        installCommand.AddArgument(installWorldFolder);
+        installCommand.AddOption(edition);
+
+        installCommand.SetHandler((packNameValue, installWorldFolderValue, editionValue) => {
+            InstallCommand.Execute(packNameValue, installWorldFolderValue, editionValue);
+        }, packName, installWorldFolder, edition);
+
+        rootCommand.AddCommand(installCommand);
+
+        Command configCommand = new Command(name: "config", description: "Get/Change the settings of the program.");
+        Command configSet = new Command(name: "set", description: "Change the default settings of the program.");
+        Command configGet = new Command(name: "get", description: "Get the current value of a setting for the program.");
+
+        Command setJavaMCFolder = new Command(name: "java-mcFolder", description: "Set the location of the Java edition .minecraft folder.");
+        Command getJavaMCFolder = new Command(name: "java-mcFolder", description: "Get the location of the Java edition .minecraft folder.");
+        Argument<DirectoryInfo> javamcPath = new Argument<DirectoryInfo>();
+        setJavaMCFolder.AddArgument(javamcPath);
+        configSet.AddCommand(setJavaMCFolder);
+        configGet.AddCommand(getJavaMCFolder);
+
+        Command setBedrockMCFolder = new Command(name: "bedrock-mcFolder", description: "Set the location of the Bedrock edition com.mojang folder.");
+        Command getBedrockMCFolder = new Command(name: "bedrock-mcFolder", description: "Get the location of the Bedrock edition com.mojang folder.");
+        Argument<DirectoryInfo> bedrockmcPath = new Argument<DirectoryInfo>();
+        setBedrockMCFolder.AddArgument(bedrockmcPath);
+        configSet.AddCommand(setBedrockMCFolder);
+        configGet.AddCommand(getBedrockMCFolder);
+
+        setJavaMCFolder.SetHandler((javamcPathValue) => {
+            ConfigCommand.SetConfigOption("java-worldfolder", javamcPathValue);
+        }, javamcPath);
+
+        setBedrockMCFolder.SetHandler((bedrockmcPathValue) => {
+            ConfigCommand.SetConfigOption("bedrock-worldfolder", bedrockmcPathValue);
+        }, bedrockmcPath);
+
+        getJavaMCFolder.SetHandler(() => {
+            ConfigCommand.GetConfigOption("java-worldfolder");
+        });
+
+        getBedrockMCFolder.SetHandler(() => {
+            ConfigCommand.GetConfigOption("bedrock-worldfolder");
+        });
+
+        configCommand.AddCommand(configSet);
+        configCommand.AddCommand(configGet);
+
+        rootCommand.AddCommand(configCommand);
 
         rootCommand.Invoke(args);
     }

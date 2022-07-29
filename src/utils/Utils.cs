@@ -6,62 +6,27 @@ public class Utils {
         bedrock
     }
 
-    public static string GetMinecraftFolder(string os, Editions edition, string worldName) {
+    public static string GetMinecraftFolder(Editions edition, string worldName) {
         string username = Environment.UserName;
         switch(edition) {
             case Editions.java:
-                switch(os) {
-                    case "Windows":
-                        return String.Format($"{Program.Settings.JavaWindowsWorldFolder}", username, worldName);
-                    case "MacOs":
-                        return String.Format($"{Program.Settings.JavaMacWorldFolder}", username, worldName);
-                    case "Linux":
-                        return String.Format($"{Program.Settings.JavaLinuxWorldFolder}", username, worldName);
-                    default:
-                        return String.Empty;
-                }
+                return String.Format($"{Program.Settings!.JavaMCFolder}", username, worldName);
             case Editions.bedrock:
-                switch(os) {
-                    case "Windows":
-                        return findBedrockWorld(String.Format($"{Program.Settings.BedrockWindowsWorldFolder}", username, worldName).Replace(worldName, ""), worldName);
-                    case "MacOs":
-                        return findBedrockWorld(String.Format($"{Program.Settings.BedrockMacWorldFolder}", username, worldName).Replace(worldName, ""), worldName);
-                    case "Linux":
-                        return findBedrockWorld(String.Format($"{Program.Settings.BedrockLinuxWorldFolder}", username, worldName).Replace(worldName, ""), worldName);
-                    default:
-                        return String.Empty;
-                }
+                return findBedrockWorld(String.Format($"{Program.Settings!.BedrockMCFolder}", username, worldName).Replace(worldName, ""), worldName);
             default:
                 goto case Editions.java;
         }
     }
 
-    public static string GetProjectFolder(string os, Editions edition, string datapackName) {
+    public static string GetProjectFolder(Editions edition, string datapackName) {
+        string separator = Path.DirectorySeparatorChar.ToString();
         switch(edition) {
             case Editions.java:
-                switch(os) {
-                    case "Windows":
-                        return String.Format($"{Program.Settings.JavaWindowsProjectFolder}", datapackName);
-                    case "MacOs":
-                        return String.Format($"{Program.Settings.JavaOtherProjectFolder}", datapackName);
-                    case "Linux":
-                        return String.Format($"{Program.Settings.JavaOtherProjectFolder}", datapackName);
-                    default:
-                        return String.Empty;
-                }
+                return String.Format($"{separator}datapacks{separator}{datapackName}{separator}");
             case Editions.bedrock:
-                switch(os) {
-                    case "Windows":
-                        return String.Format($"{Program.Settings.BedrockWindowsProjectFolder}", datapackName);
-                    case "MacOs":
-                        return String.Format($"{Program.Settings.BedrockOtherProjectFolder}", datapackName);
-                    case "Linux":
-                        return String.Format($"{Program.Settings.BedrockOtherProjectFolder}", datapackName);
-                    default:
-                        return String.Empty;
-                }
+                return String.Format($"{separator}behavior_packs{separator}{datapackName}{separator}");
             default:
-                goto case Editions.java;
+                return String.Format($"{separator}datapacks{separator}{datapackName}{separator}");
         }
     }
 

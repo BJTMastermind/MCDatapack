@@ -22,10 +22,10 @@ public class ConfigCommand {
     public static void GetConfigOption(string configOption) {
         switch(configOption) {
             case "java-worldfolder":
-                Console.WriteLine(String.Format($"{Program.Settings!.JavaMCFolder}", Environment.UserName, ""));
+                Console.WriteLine(String.Format($"{Program.Settings.JavaMCFolder}", Environment.UserName, ""));
                 break;
             case "bedrock-worldfolder":
-                Console.WriteLine(String.Format($"{Program.Settings!.BedrockMCFolder}", Environment.UserName, ""));
+                Console.WriteLine(String.Format($"{Program.Settings.BedrockMCFolder}", Environment.UserName, ""));
                 break;
         }
     }

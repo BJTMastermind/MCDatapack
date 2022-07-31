@@ -10,9 +10,9 @@ public class Utils {
         string username = Environment.UserName;
         switch(edition) {
             case Editions.java:
-                return String.Format($"{Program.Settings!.JavaMCFolder}", username, worldName);
+                return String.Format($"{Program.Settings.JavaMCFolder}", username, worldName);
             case Editions.bedrock:
-                return findBedrockWorld(String.Format($"{Program.Settings!.BedrockMCFolder}", username, worldName).Replace(worldName, ""), worldName);
+                return findBedrockWorld(String.Format($"{Program.Settings.BedrockMCFolder}", username, worldName).Replace(worldName, ""), worldName);
             default:
                 goto case Editions.java;
         }

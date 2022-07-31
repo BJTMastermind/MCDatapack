@@ -7,14 +7,14 @@ public class DeleteCommand {
     public static void Execute(string projectName, string worldName, Utils.Editions edition) {
         switch(edition) {
             case Utils.Editions.java:
-                if(Program.Settings!.JavaMCFolder == String.Empty) {
+                if(Program.Settings.JavaMCFolder == String.Empty) {
                     Console.WriteLine("You must first set the Java Edition .minecraft folder path before you can use this program.");
                     Console.WriteLine("Use: 'mcdatapack config set java-mcFolder <PathToMCFolder>' to set it.");
                     return;
                 }
                 break;
             case Utils.Editions.bedrock:
-                if(Program.Settings!.BedrockMCFolder == String.Empty) {
+                if(Program.Settings.BedrockMCFolder == String.Empty) {
                     Console.WriteLine("You must first set the Bedrock Edition com.mojang folder path before you can use this program.");
                     Console.WriteLine("Use: 'mcdatapack config set bedrock-mcFolder <PathToMCFolder>' to set it.");
                     return;
@@ -39,7 +39,7 @@ public class DeleteCommand {
     private static bool confirmationDialog() {
         Console.Write("This action is permanent and cannot be undone,\nDo you want to continue? [Y/n] ");
         string input = Console.ReadLine();
-        if(input!.ToLower() == "y" || input!.ToLower() == "") {
+        if(input.ToLower() == "y" || input.ToLower() == "") {
             return true;
         } else {
             return false;

@@ -4,7 +4,7 @@ using mcdatapack.commands;
 using mcdatapack.utils;
 
 public class Program {
-    public static TomlSettings? Settings;
+    public static TomlSettings Settings;
 
     public static void Main(string[] args) {
         if(!File.Exists("config.toml")) {

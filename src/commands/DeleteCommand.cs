@@ -38,7 +38,7 @@ public class DeleteCommand {
 
     private static bool confirmationDialog() {
         Console.Write("This action is permanent and cannot be undone,\nDo you want to continue? [Y/n] ");
-        string? input = Console.ReadLine();
+        string input = Console.ReadLine();
         if(input!.ToLower() == "y" || input!.ToLower() == "") {
             return true;
         } else {

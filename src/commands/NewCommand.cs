@@ -43,8 +43,8 @@ public class NewCommand {
                     using (FileStream fs = File.Create($"{projectFolder}{separator}pack.mcmeta")) {
                         JsonObject packmcmeta = new JsonObject();
                         JsonObject pack = new JsonObject();
-                        KeyValuePair<string, JsonNode?> packDescription = new KeyValuePair<string, JsonNode?>("description", projectDescription);
-                        KeyValuePair<string, JsonNode?> packFormatVersion = new KeyValuePair<string, JsonNode?>("pack_format", 10);
+                        KeyValuePair<string, JsonNode> packDescription = new KeyValuePair<string, JsonNode>("description", projectDescription);
+                        KeyValuePair<string, JsonNode> packFormatVersion = new KeyValuePair<string, JsonNode>("pack_format", 10);
                         pack.Add(packDescription);
                         pack.Add(packFormatVersion);
                         packmcmeta.Add("pack", pack);
@@ -93,11 +93,11 @@ public class NewCommand {
 
                     using (FileStream fs = File.Create($"{projectFolder}{separator}manifest.json")) {
                         JsonObject manifestjson = new JsonObject();
-                        KeyValuePair<string, JsonNode?> manifestVersion = new KeyValuePair<string, JsonNode?>("format_version", 2);
+                        KeyValuePair<string, JsonNode> manifestVersion = new KeyValuePair<string, JsonNode>("format_version", 2);
                         JsonObject header = new JsonObject();
-                        KeyValuePair<string, JsonNode?> headerName = new KeyValuePair<string, JsonNode?>("name", projectName);
-                        KeyValuePair<string, JsonNode?> headerDescription = new KeyValuePair<string, JsonNode?>("description", projectDescription);
-                        KeyValuePair<string, JsonNode?> headerUUID = new KeyValuePair<string, JsonNode?>("uuid", Guid.NewGuid());
+                        KeyValuePair<string, JsonNode> headerName = new KeyValuePair<string, JsonNode>("name", projectName);
+                        KeyValuePair<string, JsonNode> headerDescription = new KeyValuePair<string, JsonNode>("description", projectDescription);
+                        KeyValuePair<string, JsonNode> headerUUID = new KeyValuePair<string, JsonNode>("uuid", Guid.NewGuid());
                         JsonArray headerVersion = new JsonArray(1, 0, 0);
                         JsonArray headerMinEngineVersion = new JsonArray(1, 16, 0);
                         header.Add(headerName);
@@ -107,8 +107,8 @@ public class NewCommand {
                         header.Add("min_engine_version", headerMinEngineVersion);
                         JsonArray modules = new JsonArray();
                         JsonObject modulesObject = new JsonObject();
-                        KeyValuePair<string, JsonNode?> modulesType = new KeyValuePair<string, JsonNode?>("type", "data");
-                        KeyValuePair<string, JsonNode?> modulesUUID = new KeyValuePair<string, JsonNode?>("uuid", Guid.NewGuid());
+                        KeyValuePair<string, JsonNode> modulesType = new KeyValuePair<string, JsonNode>("type", "data");
+                        KeyValuePair<string, JsonNode> modulesUUID = new KeyValuePair<string, JsonNode>("uuid", Guid.NewGuid());
                         JsonArray modulesVersion = new JsonArray(1, 0, 0);
                         modulesObject.Add(modulesType);
                         modulesObject.Add(modulesUUID);

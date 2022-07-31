@@ -44,4 +44,17 @@ public class Utils {
         }
         return String.Empty;
     }
+
+    internal static async Task<string> getPacks(Utils.Editions edition) {
+        // Java Datapacks Link: https://api.github.com/repos/BJTMastermind/MCDatapack/contents/packages/java
+        // Bedrock Behavior Packs Link: https://api.github.com/repos/BJTMastermind/MCDatapack/contents/packages/bedrock
+
+        string url = $"https://api.github.com/repos/BJTMastermind/MCDatapack/contents/packages/{edition}";
+
+        HttpClient client = new HttpClient();
+        client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
+        HttpResponseMessage response = await client.GetAsync(url);
+
+        return response.Content.ReadAsStringAsync().Result;
+    }
 }

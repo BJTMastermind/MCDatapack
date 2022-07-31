@@ -1,5 +1,7 @@
 namespace mcdatapack.commands;
 
+using System.Text.Json.Nodes;
+
 using mcdatapack.utils;
 
 public class ListRepoCommand {
@@ -19,6 +21,13 @@ public class ListRepoCommand {
                     return;
                 }
                 break;
+        }
+        Task<string> json = Utils.getPacks(edition);
+        JsonArray packList = (JsonArray) JsonNode.Parse(json.Result);
+
+        foreach(JsonNode item in packList) {
+            string name = item["name"].ToString();
+            Console.WriteLine(name.Split(new char[] {'[', ']'})[1]);
         }
     }
 }
